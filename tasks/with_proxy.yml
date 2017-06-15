@@ -1,5 +1,4 @@
 ---
----
 # tasks file for external-port-connectivity-validator-server
 - name: Source server to connect from
   debug:
