@@ -4,17 +4,13 @@
   debug:
     msg: 'Source Server: {{ local_address }}'
 
-#- name: Validate for open port {{ target_server }}:{{ check_port }}
-#  wait_for:
-#    port: '{{ check_port }}'
-#    host: '{{  target_server }}'
-#    timeout: 5
-
 - name: Validate for open port {{ target_server }}:{{ check_port }}
+  delegate_to: "{{ inventory_host }}"
   uri:
     url: 'http://{{ target_server }}:{{ check_port }}/check'
 
 - name: Shutdown validation server {{ target_server }}:{{ check_port }}
+  delegate_to: "{{ inventory_host }}"
   uri:
     url: 'http://{{ target_server }}:{{ check_port }}/done'
   register: done
