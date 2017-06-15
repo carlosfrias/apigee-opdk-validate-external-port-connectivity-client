@@ -8,6 +8,9 @@
   delegate_to: "{{ local_address }}"
   uri:
     url: 'http://{{ target_server }}:{{ check_port }}/check'
+  environment:
+    http_proxy: http://proxy.ebiz.verizon.com:80
+    https_proxy: http://proxy.ebiz.verizon.com:80
 
 - name: Shutdown validation server {{ target_server }}:{{ check_port }}
   delegate_to: "{{ local_address }}"
@@ -15,3 +18,6 @@
     url: 'http://{{ target_server }}:{{ check_port }}/done'
   register: done
   failed_when: not done.failed
+  environment:
+    http_proxy: http://proxy.ebiz.verizon.com:80
+    https_proxy: http://proxy.ebiz.verizon.com:80
