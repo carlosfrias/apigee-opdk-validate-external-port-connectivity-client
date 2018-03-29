@@ -1,9 +1,0 @@
----
-# tasks file for external-port-connectivity-validator-server
-- name: Client validator
-  debug:
-    msg: 'Client validator: {{ private_address }}'
-
-- name: Validate for open port {{ target_server }}:{{ check_port }}
-  uri:
-    url: 'http://{{ target_server }}:{{ check_port }}/check'
